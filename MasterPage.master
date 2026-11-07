@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asesoría Legal Global</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="Css/Estilos.css" rel="stylesheet" />
+    <link rel="icon" href="Imagenes/logo2.png" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- NAVBAR -->
+        <header class="navbar">
+            <div class="contenedor navbar-interior">
+                <a href="Default.aspx" class="marca">
+                    <img src="Imagenes/logo2.png" alt="Logo de Asesoría Legal Global" />
+                    <span>Asesoría Legal Global</span>
+                </a>
+
+                <!-- Botón hamburguesa (solo se ve en celulares) -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+                <label for="menu-toggle" class="menu-boton" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </label>
+
+                <nav class="menu">
+                    <a href="Default.aspx">Inicio</a>
+
+                    <%-- Enlaces para visitantes (sin iniciar sesión) --%>
+                    <asp:PlaceHolder ID="phVisitante" runat="server">
+                        <a href="Registro.aspx">Registrarse</a>
+                        <a href="IniciarSesion.aspx" class="menu-destacado">Iniciar sesión</a>
+                    </asp:PlaceHolder>
+
+                    <%-- Enlaces para usuarios con sesión iniciada --%>
+                    <asp:PlaceHolder ID="phUsuario" runat="server" Visible="false">
+                        <a href="MisDocumentos.aspx">Mis documentos</a>
+                        <span class="menu-usuario">
+                            <asp:Label ID="lblUsuarioMenu" runat="server"></asp:Label>
+                        </span>
+                        <asp:LinkButton ID="lnkCerrarSesion" runat="server" CssClass="menu-destacado"
+                            CausesValidation="false" OnClick="lnkCerrarSesion_Click">Cerrar sesión</asp:LinkButton>
+                    </asp:PlaceHolder>
+                </nav>
+            </div>
+        </header>
+
+        <!-- CONTENIDO DE CADA PÁGINA -->
+        <main class="principal">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="pie">
+            <div class="contenedor pie-interior">
+                <img src="Imagenes/logo2.png" alt="Logo de Asesoría Legal Global" class="pie-logo" />
+                <div>
+                    <p class="pie-nombre">Asesoría Legal Global</p>
+                    <p>Asesoramiento legal y gestión segura de documentos.</p>
+                    <p class="pie-copy">&copy; <%= DateTime.Now.Year %> Asesoría Legal Global. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+    </form>
+</body>
+</html>

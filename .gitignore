@@ -1,0 +1,10 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+bin/
+obj/
+
+# Documentos subidos por los usuarios (no se suben al repo)
+App_Data/Documentos/*
+!App_Data/Documentos/.gitkeep
